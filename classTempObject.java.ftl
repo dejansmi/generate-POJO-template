@@ -1,9 +1,10 @@
-package com.dejans.${name};
+package com.dejans.${name?lower_case};
 
 import java.time.LocalDate;
+import com.dejans.model.DatabaseClass;
 
 
-public class ${className} {
+public class ${className} implements DatabaseClass  {
     <#list items as item>
     private ${item.type} ${item.item};
     private boolean ${item.item}defined;
