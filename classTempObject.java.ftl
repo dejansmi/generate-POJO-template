@@ -26,6 +26,7 @@ public class ${className} implements DatabaseClass  {
 
     public void set${item.item?cap_first}(${item.type} ${item.item}) {
         if (!this.${item.item}defined) {
+            ValidateByDefinition.setValidate("${className}", "${item.item}","${item.type}", ${item.item});
             this.${item.item} = ${item.item};
             this.${item.item}defined = true;
             return;
@@ -45,6 +46,7 @@ public class ${className} implements DatabaseClass  {
         if (status != null && (status.equals("FU") || status.equals("U"))) {
             status = "U";
             if (!this.${item.item}defined) {
+                ValidateByDefinition.setValidate("${className}", "${item.item}","${item.type}", ${item.item});
                 this.${item.item} = ${item.item};
                 this.${item.item}defined = true;
         } else {
@@ -59,13 +61,16 @@ public class ${className} implements DatabaseClass  {
             if (OLD == null) {
                 OLD = new ${className}();
             }
+            ValidateByDefinition.setValidate("${className}", "${item.item}","${item.type}", ${item.item});
             OLD.${item.item} = this.${item.item};
             OLD.${item.item}defined = true;
             this.${item.item} = ${item.item};
+            this.${item.item}defined = true;
 
             }
 
         } else if (status == null || !status.equals("D")) {
+            ValidateByDefinition.setValidate("${className}", "${item.item}","${item.type}", ${item.item});
             this.${item.item} = ${item.item};
             this.${item.item}defined = true;
         }
