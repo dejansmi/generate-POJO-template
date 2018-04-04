@@ -2,6 +2,7 @@ package com.dejans.${name?lower_case};
 
 import java.time.LocalDate;
 import com.dejans.model.DatabaseClass;
+import com.dejans.ValidateAndException.ValidateByDefinition;
 
 
 public class ${className} implements DatabaseClass  {
@@ -24,7 +25,7 @@ public class ${className} implements DatabaseClass  {
         return ${item.item};
     }
 
-    public void set${item.item?cap_first}(${item.type} ${item.item}) {
+    public void set${item.item?cap_first}(${item.type} ${item.item}) throws Exception {
         if (!this.${item.item}defined) {
             ValidateByDefinition.setValidate("${className}", "${item.item}","${item.type}", ${item.item});
             this.${item.item} = ${item.item};
@@ -104,7 +105,7 @@ public class ${className} implements DatabaseClass  {
             status = "I";
         }
         return status;
-    }
+    }  
 
     public void setStatus(String status) {
         this.status = status;
@@ -117,7 +118,7 @@ public class ${className} implements DatabaseClass  {
         return null;
     }
 
-    public void set(String itemName, Object value) {
+    public void set(String itemName, Object value) throws Exception {
         <#list items as item>if (itemName.equals("${item.item}")) {
             set${item.item?cap_first}((${item.type}) value);
         }<#sep> else </#sep></#list>
